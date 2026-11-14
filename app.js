@@ -9,6 +9,7 @@ const CONFIG = {
   formEndpoint: ""
 };
 
+const BASE_PATH = new URL(".", document.currentScript.src).pathname.replace(/\/$/, "");
 const services = [
   { slug: "software-engineering", name: "Software Engineering", icon: "⌘", short: "Custom software, engineered for your business.", description: "We design and develop custom software applications tailored to business requirements—from focused internal tools to scalable digital products.", tags: ["Web applications", "SaaS platforms", "API integrations", "Modernization"], challenges: ["Off-the-shelf software limitations", "Disconnected business applications", "Inefficient manual processes", "Lack of scalable digital infrastructure"], features: ["Custom web application development", "SaaS application development", "Business management systems", "API development and integration", "Backend architecture and database design"], stack: ["React", "Next.js", "Node.js", "Python", "TypeScript", "PostgreSQL", "Firebase", "REST APIs"], benefits: ["Improved operational control", "Workflows designed for your team", "Scalable foundations", "Better-connected systems"] },
   { slug: "business-automation", name: "Business Automation", icon: "⟳", short: "Automate processes. Eliminate operational friction.", description: "We streamline repetitive workflows and connect the tools your business already uses, making day-to-day operations more consistent and visible.", tags: ["Workflow automation", "System integrations", "Internal tools", "Reporting"], challenges: ["Repetitive manual tasks", "Spreadsheet-dependent workflows", "Data duplication", "Disconnected applications"], features: ["Workflow automation", "API-based integrations", "Automated reporting and data synchronization", "Custom internal tools", "Notification and approval workflows"], stack: ["Node.js", "Python", "REST APIs", "Webhooks", "PostgreSQL", "Cloud services"], benefits: ["Less repetitive work", "Fewer manual errors", "Better workflow visibility", "More consistent operations"] },
@@ -22,8 +23,13 @@ const projects = [
 ];
 
 const iconSvg = (symbol) => `<span aria-hidden="true">${symbol}</span>`;
-const pathFor = (path) => path === "/" ? "/" : path.replace(/\/+$/, "");
-const routeLink = (path, label, cls = "") => `<a class="${cls}" href="${path}" data-link>${label}</a>`;
+const pathFor = (path) => {
+  const withoutBase = BASE_PATH && (path === BASE_PATH || path.startsWith(`${BASE_PATH}/`))
+    ? path.slice(BASE_PATH.length) || "/"
+    : path;
+  return withoutBase === "/" ? "/" : withoutBase.replace(/\/+$/, "");
+};
+const routeLink = (path, label, cls = "") => `<a class="${cls}" href="${BASE_PATH}${path}" data-link>${label}</a>`;
 const serviceUrl = (slug) => `/services/${slug}`;
 const projectUrl = (slug) => `/portfolio/${slug}`;
 
@@ -192,13 +198,14 @@ function render() {
   document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
   document.querySelectorAll("[data-date]").forEach(el => el.textContent = new Intl.DateTimeFormat("en", { year:"numeric", month:"long" }).format(new Date()));
   document.querySelectorAll(".nav-links a[data-link]").forEach(a => {
-    if (path === a.getAttribute("href") || (a.getAttribute("href") !== "/" && path.startsWith(a.getAttribute("href") + "/"))) a.classList.add("active");
+    const linkPath = pathFor(a.getAttribute("href"));
+    if (path === linkPath || (linkPath !== "/" && path.startsWith(linkPath + "/"))) a.classList.add("active");
   });
   window.scrollTo(0, 0);
 }
 
 function navigate(path) {
-  if (path === location.pathname) return;
+  if (pathFor(path) === pathFor(location.pathname)) return;
   history.pushState({}, "", path);
   render();
 }

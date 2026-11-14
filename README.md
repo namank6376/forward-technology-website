@@ -27,4 +27,4 @@ Before deploying, replace `YOUR_DOMAIN_HERE` in `robots.txt` and `sitemap.xml`, 
 
 ## Build and deploy
 
-There is no compilation step. Upload the project files to a static hosting provider and enable SPA fallback routing for `index.html` (the included `_redirects` does this on Netlify-compatible hosts). The site includes responsive layouts, keyboard-visible focus styles, reduced-motion handling, metadata, structured data, robots and sitemap files.
+There is no compilation step. Upload the project files to a static hosting provider and enable SPA fallback routing for `index.html` (the included `_redirects` does this on Netlify-compatible hosts). Assets and client-side routes support a GitHub Pages project-site subpath. The site includes responsive layouts, keyboard-visible focus styles, reduced-motion handling, metadata, structured data, robots and sitemap files.
