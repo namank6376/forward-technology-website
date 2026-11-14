@@ -11,15 +11,15 @@ const CONFIG = {
 
 const BASE_PATH = new URL(".", document.currentScript.src).pathname.replace(/\/$/, "");
 const services = [
-  { slug: "software-engineering", name: "Software Engineering", icon: "⌘", short: "Custom software, engineered for your business.", description: "We design and develop custom software applications tailored to business requirements—from focused internal tools to scalable digital products.", tags: ["Web applications", "SaaS platforms", "API integrations", "Modernization"], challenges: ["Off-the-shelf software limitations", "Disconnected business applications", "Inefficient manual processes", "Lack of scalable digital infrastructure"], features: ["Custom web application development", "SaaS application development", "Business management systems", "API development and integration", "Backend architecture and database design"], stack: ["React", "Next.js", "Node.js", "Python", "TypeScript", "PostgreSQL", "Firebase", "REST APIs"], benefits: ["Improved operational control", "Workflows designed for your team", "Scalable foundations", "Better-connected systems"] },
-  { slug: "business-automation", name: "Business Automation", icon: "⟳", short: "Automate processes. Eliminate operational friction.", description: "We streamline repetitive workflows and connect the tools your business already uses, making day-to-day operations more consistent and visible.", tags: ["Workflow automation", "System integrations", "Internal tools", "Reporting"], challenges: ["Repetitive manual tasks", "Spreadsheet-dependent workflows", "Data duplication", "Disconnected applications"], features: ["Workflow automation", "API-based integrations", "Automated reporting and data synchronization", "Custom internal tools", "Notification and approval workflows"], stack: ["Node.js", "Python", "REST APIs", "Webhooks", "PostgreSQL", "Cloud services"], benefits: ["Less repetitive work", "Fewer manual errors", "Better workflow visibility", "More consistent operations"] },
-  { slug: "business-intelligence", name: "Business Intelligence", icon: "◉", short: "Turn business data into better decisions.", description: "We transform business data into clear, actionable insight through analytics, reporting and intelligent dashboards built around the questions that matter.", tags: ["Analytics dashboards", "KPI monitoring", "Data visualization", "Automated reports"], challenges: ["Data scattered across platforms", "Manual reporting", "Limited business visibility", "Difficulty identifying trends"], features: ["Interactive dashboards", "Business performance analytics", "Data visualization and transformation", "Automated reports", "KPI monitoring"], stack: ["TypeScript", "React", "SQL", "Python", "Data visualization", "PostgreSQL"], benefits: ["Better-informed decisions", "Clearer business visibility", "More consistent reporting", "Data-driven planning"] }
+  { slug: "software-engineering", name: "Software Engineering", icon: "⌘", accent: "#8d82ff", short: "Custom software, engineered for your business.", description: "We design and develop custom software applications tailored to business requirements—from focused internal tools to scalable digital products.", tags: ["Web applications", "SaaS platforms", "API integrations", "Modernization"], challenges: ["Off-the-shelf software limitations", "Disconnected business applications", "Inefficient manual processes", "Lack of scalable digital infrastructure"], features: ["Custom web application development", "SaaS application development", "Business management systems", "API development and integration", "Backend architecture and database design"], stack: ["React", "Next.js", "Node.js", "Python", "TypeScript", "PostgreSQL", "Firebase", "REST APIs"], benefits: ["Improved operational control", "Workflows designed for your team", "Scalable foundations", "Better-connected systems"] },
+  { slug: "business-automation", name: "Business Automation", icon: "⟳", accent: "#55d9c2", short: "Automate processes. Eliminate operational friction.", description: "We streamline repetitive workflows and connect the tools your business already uses, making day-to-day operations more consistent and visible.", tags: ["Workflow automation", "System integrations", "Internal tools", "Reporting"], challenges: ["Repetitive manual tasks", "Spreadsheet-dependent workflows", "Data duplication", "Disconnected applications"], features: ["Workflow automation", "API-based integrations", "Automated reporting and data synchronization", "Custom internal tools", "Notification and approval workflows"], stack: ["Node.js", "Python", "REST APIs", "Webhooks", "PostgreSQL", "Cloud services"], benefits: ["Less repetitive work", "Fewer manual errors", "Better workflow visibility", "More consistent operations"] },
+  { slug: "business-intelligence", name: "Business Intelligence", icon: "◉", accent: "#f0ad69", short: "Turn business data into better decisions.", description: "We transform business data into clear, actionable insight through analytics, reporting and intelligent dashboards built around the questions that matter.", tags: ["Analytics dashboards", "KPI monitoring", "Data visualization", "Automated reports"], challenges: ["Data scattered across platforms", "Manual reporting", "Limited business visibility", "Difficulty identifying trends"], features: ["Interactive dashboards", "Business performance analytics", "Data visualization and transformation", "Automated reports", "KPI monitoring"], stack: ["TypeScript", "React", "SQL", "Python", "Data visualization", "PostgreSQL"], benefits: ["Better-informed decisions", "Clearer business visibility", "More consistent reporting", "Data-driven planning"] }
 ];
 
 const projects = [
-  { slug: "operations-dashboard", name: "Operations Dashboard", kind: "Technical Demonstration", category: "Business intelligence", description: "A concept dashboard exploring how operational signals can come together in one clear view.", stack: ["React", "TypeScript", "Data visualization"] },
-  { slug: "workflow-studio", name: "Workflow Studio", kind: "Concept Project", category: "Business automation", description: "A product concept for mapping approval steps and reducing repetitive handoffs.", stack: ["Node.js", "REST APIs", "PostgreSQL"] },
-  { slug: "commerce-console", name: "Commerce Console", kind: "Internal Project", category: "Web application", description: "A demonstration interface for organizing commerce operations and performance data.", stack: ["Next.js", "TypeScript", "Analytics"] }
+  { slug: "operations-dashboard", name: "Operations Dashboard", kind: "Technical Demonstration", category: "Business intelligence", accent: "#f0ad69", description: "A concept dashboard exploring how operational signals can come together in one clear view.", stack: ["React", "TypeScript", "Data visualization"] },
+  { slug: "workflow-studio", name: "Workflow Studio", kind: "Concept Project", category: "Business automation", accent: "#55d9c2", description: "A product concept for mapping approval steps and reducing repetitive handoffs.", stack: ["Node.js", "REST APIs", "PostgreSQL"] },
+  { slug: "commerce-console", name: "Commerce Console", kind: "Internal Project", category: "Web application", accent: "#8d82ff", description: "A demonstration interface for organizing commerce operations and performance data.", stack: ["Next.js", "TypeScript", "Analytics"] }
 ];
 
 const iconSvg = (symbol) => `<span aria-hidden="true">${symbol}</span>`;
@@ -57,12 +57,12 @@ function footer() {
       <div class="footer-col"><h4>Capabilities</h4>${services.map(s => routeLink(serviceUrl(s.slug), s.name)).join("")}</div>
       <div class="footer-col"><h4>Get in touch</h4>${contact}${linkedIn}${routeLink("/privacy-policy", "Privacy policy")}</div>
     </div>
-    <div class="footer-bottom"><span>© <span data-year></span> ${escapeHtml(CONFIG.companyName)}. All rights reserved.</span><span>Thoughtful engineering. Practical outcomes.</span></div>
+    <div class="footer-bottom"><span>© <span data-year></span> ${escapeHtml(CONFIG.companyName)}. All rights reserved.</span></div>
   </div></footer>`;
 }
 
 function serviceCard(s) {
-  return `<article class="card fade-in"><div class="card-icon">${iconSvg(s.icon)}</div><h3>${s.name}</h3><p>${s.short}</p><ul class="tag-list">${s.tags.map(tag => `<li>${tag}</li>`).join("")}</ul>${routeLink(serviceUrl(s.slug), 'Explore service <span class="arrow">↗</span>', "card-link")}</article>`;
+  return `<article class="card service-card fade-in" style="--card-accent:${s.accent}"><div class="card-icon">${iconSvg(s.icon)}</div><h3>${s.name}</h3><p>${s.short}</p><ul class="tag-list">${s.tags.map(tag => `<li>${tag}</li>`).join("")}</ul>${routeLink(serviceUrl(s.slug), 'Explore service <span class="arrow">↗</span>', "card-link")}</article>`;
 }
 
 function dashboard() {
@@ -81,7 +81,7 @@ function dashboard() {
 }
 
 function projectCard(p) {
-  return `<article class="card project-card fade-in"><div class="project-art" aria-hidden="true"><div class="mini-window"><div class="mini-top"><i></i><i></i><i></i></div><div class="mini-content"><div class="mini-sidebar"></div><div class="mini-main"><div class="mini-kpis"><i></i><i></i><i></i></div><div class="mini-chart"></div></div></div></div></div><div class="project-info"><div class="project-meta"><span class="pill">${p.kind}</span><span class="dash-label">${p.category}</span></div><h3>${p.name}</h3><p>${p.description}</p><div class="tech-row">${p.stack.map(x => `<span class="pill">${x}</span>`).join("")}</div><div style="margin-top:17px">${routeLink(projectUrl(p.slug), 'View demonstration <span class="arrow">↗</span>', "card-link")}</div></div></article>`;
+  return `<article class="card project-card fade-in" style="--card-accent:${p.accent}"><div class="project-art" aria-hidden="true"><div class="mini-window"><div class="mini-top"><i></i><i></i><i></i></div><div class="mini-content"><div class="mini-sidebar"></div><div class="mini-main"><div class="mini-kpis"><i></i><i></i><i></i></div><div class="mini-chart"></div></div></div></div></div><div class="project-info"><div class="project-meta"><span class="pill">${p.kind}</span><span class="dash-label">${p.category}</span></div><h3>${p.name}</h3><p>${p.description}</p><div class="tech-row">${p.stack.map(x => `<span class="pill">${x}</span>`).join("")}</div><div style="margin-top:17px">${routeLink(projectUrl(p.slug), 'View demonstration <span class="arrow">↗</span>', "card-link")}</div></div></article>`;
 }
 
 function cta() {
@@ -93,7 +93,7 @@ function home() {
     <section class="wrap hero"><div class="hero-copy"><div class="eyebrow">Software · Automation · Intelligence</div><h1>Building technology that <span class="gradient-text">moves businesses forward.</span></h1><p>We engineer custom software, automate business operations and develop intelligent digital solutions that help businesses grow.</p><div class="hero-actions">${routeLink("/contact", 'Discuss your project <span class="arrow">↗</span>', "button")}${routeLink("/services", 'Explore our solutions <span class="arrow">→</span>', "button ghost")}</div><div class="hero-note"><span class="status-dot"></span> Thoughtful engineering for real business needs</div></div>${dashboard()}</section>
     <section class="section compact"><div class="wrap"><div class="eyebrow">What we bring together</div><div class="capability-strip"><div class="capability"><span class="cap-icon">⌘</span><span><strong>Software engineering</strong><small>Purpose-built digital tools</small></span></div><div class="capability"><span class="cap-icon">⟳</span><span><strong>Business automation</strong><small>Connected, efficient workflows</small></span></div><div class="capability"><span class="cap-icon">◉</span><span><strong>Business intelligence</strong><small>Insight you can act on</small></span></div></div></div></section>
     <section class="section"><div class="wrap"><div class="section-head"><div><div class="kicker">Our capabilities</div><h2>Technology that works<br>the way your business does.</h2><p>From a specific operational bottleneck to a new digital product, our work starts with understanding what needs to change.</p></div>${routeLink("/services", 'All services <span class="arrow">↗</span>', "button text")}</div><div class="cards">${services.map(serviceCard).join("")}</div></div></section>
-    <section class="section"><div class="wrap split"><div class="split-copy"><div class="kicker">Why Forward</div><h2>Business-first thinking.<br>Engineering that lasts.</h2><p>Good technology is more than code. It should make work simpler today and leave room for what comes next.</p><ul class="list-check"><li><span class="check">✳</span>Solutions shaped around your real requirements</li><li><span class="check">✳</span>Scalable architecture without unnecessary complexity</li><li><span class="check">✳</span>Transparent collaboration from first conversation to delivery</li><li><span class="check">✳</span>Practical innovation, built for long-term usefulness</li></ul></div><div class="benefit-grid"><div class="benefit"><span>01 / Understand</span><h3>Business-first engineering</h3><p>We start with your operating reality, not a one-size-fits-all tool.</p></div><div class="benefit"><span>02 / Design</span><h3>Tailored solutions</h3><p>The right-sized approach for your workflows and goals.</p></div><div class="benefit"><span>03 / Build</span><h3>Scalable foundations</h3><p>Thoughtful technical choices keep future options open.</p></div><div class="benefit"><span>04 / Partner</span><h3>Clear communication</h3><p>Shared understanding and support throughout the journey.</p></div></div></div></section>
+    <section class="section"><div class="wrap split"><div class="split-copy"><div class="kicker">Why Forward</div><h2>Business-first thinking.<br>Engineering that lasts.</h2><p>Good technology is more than code. It should make work simpler today and leave room for what comes next.</p><ul class="list-check"><li><span class="check">✳</span>Solutions shaped around your real requirements</li><li><span class="check">✳</span>Scalable architecture without unnecessary complexity</li><li><span class="check">✳</span>Transparent collaboration from first conversation to delivery</li><li><span class="check">✳</span>Practical innovation, built for long-term usefulness</li></ul></div><div class="benefit-grid"><div class="benefit interactive-surface"><span>01 / Understand</span><h3>Business-first engineering</h3><p>We start with your operating reality, not a one-size-fits-all tool.</p></div><div class="benefit interactive-surface"><span>02 / Design</span><h3>Tailored solutions</h3><p>The right-sized approach for your workflows and goals.</p></div><div class="benefit interactive-surface"><span>03 / Build</span><h3>Scalable foundations</h3><p>Thoughtful technical choices keep future options open.</p></div><div class="benefit interactive-surface"><span>04 / Partner</span><h3>Clear communication</h3><p>Shared understanding and support throughout the journey.</p></div></div></div></section>
     <section class="section"><div class="wrap"><div class="section-head"><div><div class="kicker">Selected work</div><h2>Ideas made tangible.</h2><p>Explorations and demonstrations of the problems we enjoy solving. These are not representations of paid client engagements.</p></div>${routeLink("/portfolio", 'Explore portfolio <span class="arrow">↗</span>', "button text")}</div><div class="cards">${projects.map(projectCard).join("")}</div></div></section>
     <section class="section"><div class="wrap"><div class="section-head"><div><div class="kicker">How we work</div><h2>A considered process, from idea to impact.</h2></div></div><div class="workflow">${[["01","Discover","Understand the challenge, people and desired outcomes."],["02","Design","Shape the requirements and solution direction together."],["03","Develop","Build with focus, clear communication and iteration."],["04","Validate","Test quality, usability and real-world fit."],["05","Support","Deploy thoughtfully and help you move forward."]].map(([n,t,d]) => `<div class="step"><span class="step-num">${n}</span><h3>${t}</h3><p>${d}</p></div>`).join("")}</div></div></section>
     ${cta()}
@@ -121,7 +121,7 @@ function serviceDetail(s) {
   const relatedProject = projects.find(project => project.slug === relatedProjectSlug);
   return `<main id="main" class="fade-in">${pageHero(s.name, s.name === "Software Engineering" ? "Custom software. <span class='gradient-text'>Engineered for your business.</span>" : s.name === "Business Automation" ? "Automate processes. <span class='gradient-text'>Eliminate operational friction.</span>" : "Turn business data into <span class='gradient-text'>better decisions.</span>", s.description, [["Home","/"],["Services","/services"],[s.name,null]])}
     <section class="section compact"><div class="wrap content-grid"><div class="content-panel"><div class="kicker">The challenge</div><h3>What gets in the way</h3><ul class="bullet-list">${s.challenges.map(x=>`<li>${x}</li>`).join("")}</ul></div><div class="content-panel"><div class="kicker">Our solution</div><h3>Built around your operation</h3><p>We work with you to understand the underlying need, then design and deliver an appropriately scoped solution that fits your people, processes and systems.</p><ul class="bullet-list">${s.features.map(x=>`<li>${x}</li>`).join("")}</ul></div></div></section>
-    <section class="section compact"><div class="wrap split"><div><div class="kicker">Designed for outcomes</div><h2>Useful now.<br>Ready for what's next.</h2><p class="section-intro">The right solution should address today's friction and provide a solid foundation for the needs ahead.</p><div class="stack">${s.stack.map(x=>`<span class="pill">${x}</span>`).join("")}</div></div><div class="benefit-grid">${s.benefits.map((x,i)=>`<div class="benefit"><span>0${i+1} / Outcome</span><h3>${x}</h3><p>Practical improvements aligned to your team's needs.</p></div>`).join("")}</div></div></section>
+    <section class="section compact"><div class="wrap split"><div><div class="kicker">Designed for outcomes</div><h2>Useful now.<br>Ready for what's next.</h2><p class="section-intro">The right solution should address today's friction and provide a solid foundation for the needs ahead.</p><div class="stack">${s.stack.map(x=>`<span class="pill">${x}</span>`).join("")}</div></div><div class="benefit-grid">${s.benefits.map((x,i)=>`<div class="benefit outcome-card interactive-surface"><span>0${i+1} / Outcome</span><h3>${x}</h3></div>`).join("")}</div></div></section>
     ${relatedProject ? `<section class="section compact"><div class="wrap"><div class="section-head"><div><div class="kicker">Explore the idea</div><h2>A related demonstration.</h2><p>This concept illustrates one possible application of ${s.name.toLowerCase()}.</p></div></div><div class="cards">${projectCard(relatedProject)}</div></div></section>` : ""}
     <section class="section compact"><div class="wrap"><div class="section-head"><div><div class="kicker">Frequently asked</div><h2>Questions, answered.</h2></div></div><div class="faq"><details><summary>How do we get started?</summary><p>Share a little about the challenge through our contact form. We can discuss your goals, constraints and possible next steps.</p></details><details><summary>Can you work with our existing tools?</summary><p>Often, yes. We first review your current systems and integration options, then recommend an approach based on what is practical and maintainable.</p></details><details><summary>How is a project scoped?</summary><p>Scope depends on your requirements. We clarify the outcomes and priorities together before agreeing on a suitable path forward.</p></details><details><summary>Do you support the solution after launch?</summary><p>Ongoing support can be discussed as part of the project, based on the solution and your team's needs.</p></details></div></div></section>${cta()}</main>`;
 }
@@ -195,6 +195,7 @@ function render() {
     if (!canonical) document.head.append(link);
   } else if (canonical) canonical.remove();
   document.getElementById("app").innerHTML = `${header()}${page.body}${footer()}`;
+  document.querySelectorAll(".card, .benefit, .content-panel, .dashboard").forEach(surface => surface.classList.add("interactive-surface"));
   document.querySelectorAll("[data-year]").forEach(el => el.textContent = new Date().getFullYear());
   document.querySelectorAll("[data-date]").forEach(el => el.textContent = new Intl.DateTimeFormat("en", { year:"numeric", month:"long" }).format(new Date()));
   document.querySelectorAll(".nav-links a[data-link]").forEach(a => {
@@ -230,7 +231,89 @@ document.addEventListener("click", event => {
   }
 });
 window.addEventListener("popstate", render);
-window.addEventListener("scroll", () => document.querySelector(".site-header")?.classList.toggle("scrolled", window.scrollY > 10), { passive: true });
+const hasFinePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches
+  && !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const interactiveSelector = ".card, .benefit, .content-panel, .dashboard";
+let activeSurface = null;
+let activeScene = null;
+let pointerFrame = 0;
+let latestPointer = null;
+
+function resetSurface(surface) {
+  if (!surface) return;
+  for (const property of ["--tilt-x", "--tilt-y", "--surface-x", "--surface-y"]) surface.style.removeProperty(property);
+}
+
+document.addEventListener("pointermove", event => {
+  if (!hasFinePointer || event.pointerType === "touch") return;
+  latestPointer = event;
+  if (pointerFrame) return;
+  pointerFrame = requestAnimationFrame(() => {
+    pointerFrame = 0;
+    const pointer = latestPointer;
+    if (!pointer) return;
+    document.documentElement.style.setProperty("--pointer-x", `${pointer.clientX}px`);
+    document.documentElement.style.setProperty("--pointer-y", `${pointer.clientY}px`);
+
+    const surface = pointer.target instanceof Element ? pointer.target.closest(interactiveSelector) : null;
+    if (activeSurface !== surface) {
+      resetSurface(activeSurface);
+      activeSurface = surface;
+    }
+    if (surface) {
+      const bounds = surface.getBoundingClientRect();
+      const x = Math.max(0, Math.min(1, (pointer.clientX - bounds.left) / bounds.width));
+      const y = Math.max(0, Math.min(1, (pointer.clientY - bounds.top) / bounds.height));
+      surface.style.setProperty("--surface-x", `${x * 100}%`);
+      surface.style.setProperty("--surface-y", `${y * 100}%`);
+      surface.style.setProperty("--tilt-y", `${((x - 0.5) * 9).toFixed(2)}deg`);
+      surface.style.setProperty("--tilt-x", `${((0.5 - y) * 7).toFixed(2)}deg`);
+    }
+
+    const scene = pointer.target instanceof Element ? pointer.target.closest(".hero-visual") : null;
+    if (activeScene !== scene && activeScene) {
+      for (const property of ["--scene-x", "--scene-y", "--scene-x-reverse", "--scene-y-reverse", "--scene-x-soft", "--scene-y-soft"]) {
+        activeScene.style.removeProperty(property);
+      }
+    }
+    activeScene = scene;
+    if (scene) {
+      const bounds = scene.getBoundingClientRect();
+      const x = (pointer.clientX - bounds.left) / bounds.width - 0.5;
+      const y = (pointer.clientY - bounds.top) / bounds.height - 0.5;
+      scene.style.setProperty("--scene-x", `${(x * 16).toFixed(2)}px`);
+      scene.style.setProperty("--scene-y", `${(y * 16).toFixed(2)}px`);
+      scene.style.setProperty("--scene-x-reverse", `${(-x * 13).toFixed(2)}px`);
+      scene.style.setProperty("--scene-y-reverse", `${(-y * 13).toFixed(2)}px`);
+      scene.style.setProperty("--scene-x-soft", `${(x * 7).toFixed(2)}px`);
+      scene.style.setProperty("--scene-y-soft", `${(y * 7).toFixed(2)}px`);
+    }
+  });
+}, { passive: true });
+
+document.addEventListener("pointerout", event => {
+  if (!hasFinePointer || !(event.target instanceof Element)) return;
+  const next = event.relatedTarget instanceof Element ? event.relatedTarget : null;
+  const nextSurface = next?.closest(interactiveSelector) ?? null;
+  if (activeSurface && nextSurface !== activeSurface) {
+    resetSurface(activeSurface);
+    activeSurface = nextSurface;
+  }
+  const nextScene = next?.closest(".hero-visual") ?? null;
+  if (activeScene && nextScene !== activeScene) {
+    for (const property of ["--scene-x", "--scene-y", "--scene-x-reverse", "--scene-y-reverse", "--scene-x-soft", "--scene-y-soft"]) {
+      activeScene.style.removeProperty(property);
+    }
+    activeScene = nextScene;
+  }
+}, { passive: true });
+
+window.addEventListener("scroll", () => {
+  const scrollOffset = `${Math.min(window.scrollY * 0.08, 36).toFixed(1)}px`;
+  document.querySelector(".site-header")?.classList.toggle("scrolled", window.scrollY > 10);
+  document.querySelector(".hero-visual")?.style.setProperty("--scroll-parallax", scrollOffset);
+  document.querySelector(".page-hero")?.style.setProperty("--scroll-parallax", scrollOffset);
+}, { passive: true });
 
 document.addEventListener("submit", async event => {
   if (event.target.id !== "inquiry-form") return;
