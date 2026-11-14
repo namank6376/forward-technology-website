@@ -41,7 +41,12 @@ button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible
 .service-menu a { padding: 10px 12px; border-radius: 8px; color: var(--muted); font-size: 13px; }
 .service-menu a:hover { background: #192234; color: white; }
 .nav-right { display: flex; align-items: center; gap: 18px; }
-.menu-toggle { display: none; border: 1px solid var(--line); border-radius: 9px; padding: 8px 11px; background: var(--surface); color: white; cursor: pointer; }
+.menu-toggle { display: none; width: 42px; height: 42px; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 9px; padding: 0; background: var(--surface); color: var(--text); cursor: pointer; }
+.menu-icon { display: grid; width: 18px; gap: 4px; }
+.menu-icon i { display: block; width: 18px; height: 2px; border-radius: 2px; background: currentColor; transition: transform .2s, opacity .2s; }
+.menu-toggle[aria-expanded="true"] .menu-icon i:first-child { transform: translateY(6px) rotate(45deg); }
+.menu-toggle[aria-expanded="true"] .menu-icon i:nth-child(2) { opacity: 0; }
+.menu-toggle[aria-expanded="true"] .menu-icon i:last-child { transform: translateY(-6px) rotate(-45deg); }
 .button { display: inline-flex; min-height: 47px; align-items: center; justify-content: center; gap: 9px; padding: 0 18px; border: 1px solid transparent; border-radius: 7px; background: linear-gradient(110deg, #777aff, #5f70e9); box-shadow: 0 8px 26px rgba(89,101,220,.19); color: white; font-weight: 600; font-size: 13px; transition: transform .2s, border-color .2s, background .2s; cursor: pointer; }
 .button:hover { transform: translateY(-2px); background: linear-gradient(110deg, #8689ff, #687af4); }
 .button.small { min-height: 39px; padding: 0 14px; font-size: 12px; }
@@ -280,8 +285,7 @@ main { min-height: 65vh; }
 @media (max-width: 680px) {
   .wrap { width: min(100% - 36px, 520px); }
   .site-header { height: 66px; }
-  .nav-right { gap: 9px; }
-  .nav-right > .button { display: none; }
+  .nav-right { display: none; }
   .menu-toggle { display: inline-flex; align-items: center; }
   .nav-links { position: absolute; top: 65px; right: 0; left: 0; display: none; align-items: stretch; gap: 0; padding: 10px 18px 18px; border-bottom: 1px solid var(--line); background: #0b1019; }
   .nav-links.open { display: flex; flex-direction: column; }

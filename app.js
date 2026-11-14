@@ -39,7 +39,7 @@ function header() {
   ];
   return `<header class="site-header"><div class="wrap nav-inner">
     ${routeLink("/", '<span class="brand-mark">F</span><span>forward<span style="color:var(--cyan)">.</span></span>', "brand")}
-    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="primary-nav"><span class="menu-icon" aria-hidden="true"><i></i><i></i><i></i></span></button>
     <ul class="nav-links" id="primary-nav">${links.map(([href, text]) => `<li class="${text === "Services" ? "nav-services" : ""}">${text === "Services"
       ? `<button type="button" data-services-toggle aria-expanded="false">${text}</button><div class="service-menu">${services.map(s => routeLink(serviceUrl(s.slug), s.name)).join("")}${routeLink("/services", "All services")}</div>`
       : routeLink(href, text)}</li>`).join("")}</ul>
@@ -222,6 +222,7 @@ document.addEventListener("click", event => {
     const nav = document.getElementById("primary-nav");
     const open = nav.classList.toggle("open");
     menuButton.setAttribute("aria-expanded", String(open));
+    menuButton.setAttribute("aria-label", open ? "Close menu" : "Open menu");
   }
   const servicesButton = event.target.closest("[data-services-toggle]");
   if (servicesButton) {
