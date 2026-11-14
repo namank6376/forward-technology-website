@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- Replace YOUR_DOMAIN_HERE with the production hostname before deployment. -->
+  <url><loc>https://YOUR_DOMAIN_HERE/</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/about</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/services</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/services/software-engineering</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/services/business-automation</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/services/business-intelligence</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/portfolio</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/portfolio/operations-dashboard</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/portfolio/workflow-studio</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/portfolio/commerce-console</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/contact</loc></url>
+  <url><loc>https://YOUR_DOMAIN_HERE/privacy-policy</loc></url>
+</urlset>
